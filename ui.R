@@ -270,7 +270,11 @@ library("DT")
                                actionButton(inputId = "truss", label = "Get Truss Plot", height = 125),
                                numericInput(inputId = "truss_k", min = 3, max = 50, 
                                             value = 3, label = "Enter K Value")
-                             )
+                             )#,
+                             # box(
+                             #   title="Vis Network",
+                             #   visNetworkOutput("vis_relational_net")
+                             # )
                            )
                            )
 

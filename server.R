@@ -527,9 +527,15 @@ output$relational_network <- renderPlot(
     # else{
     #   plot(erdos.renyi.game(10,0.5,"gnp"))
     # }
+    
     between_label_plot(network_analysis_graph(),input$num_labels_display)
+
   }
   )
+
+# output$vis_relational_net<- renderVisNetwork({
+#   vis_relational_net <- visIgraph(network_analysis_graph())
+# })
   
 #Selectors for filtering group, project data
 output$group_selector <- renderUI({
@@ -786,8 +792,8 @@ network_analysis_graph <- reactive({
       if(length(label_set)>0){
       bet_deg_df <- data.frame(my_deg,my_bet)
       plot(my_deg,my_bet, xlab = "Degree Centrality", ylab = "Betweenness Centrality", xlim = c(min(my_deg)-0.5,1.3*max(my_deg)+0.5))
-      text(my_deg[label_set], my_bet[label_set], label=names(my_deg[label_set]),cex=0.6, pos=4, col="darkblue")}
-      # aes(my_deg[label_set], my_bet[label_set], label=names(my_deg[label_set]), geom_text_repel() +
+      text(my_deg[label_set], my_bet[label_set], label=names(my_deg[label_set]),cex=0.6, pos=4, col="darkblue")
+      # # aes(my_deg[label_set], my_bet[label_set], label=names(my_deg[label_set]), geom_text_repel() +
       #         geom_point(color = 'blue') +
       #         theme_classic(base_size = 16))#cex=0.6, pos=4, col="darkblue")
       
@@ -795,8 +801,17 @@ network_analysis_graph <- reactive({
       #geom_text_repel() +
       #  geom_point(color = 'red') +
       #  theme_classic(base_size = 16)
-      
+      # browser()
       #with(my_bet, text(my_bet, labels = names(my_bet), pos = 4))
+      #browser()
+      # gg <- ggplot(bet_deg_df, aes(x=my_deg, y=my_bet)) + 
+      #   geom_point(aes(col='blue'), size=3) + 
+      #   geom_text(aes(label=row.names(bet_deg_df[label_set,])), size=2, data=bet_deg_df[label_set,])
+      #   geom_smooth(method="lm", col="firebrick", size=2) + 
+      #   geom_text_repel() +
+      #   labs(title="Betweenness vs Degree Centrality", y="Betweenness", x="Degree")
+      # plot(gg)
+      }
     }
   })
   
